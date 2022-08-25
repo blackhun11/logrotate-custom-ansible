@@ -29,6 +29,6 @@
       }
 - name: Creating Cron to Exec Logrotate Setup
   cron:
-    name: "Execute Logrotate Setup"
-    minute: "14"
-    job: "/usr/sbin/logrotate {{ folder_path }}/{{ logrotate_file_name }}.conf --state {{ folder_path }}/{{ logrotate_file_name }}.conf/logrotate-state"
+    name: 'Execute Logrotate Setup'
+    minute: '14'
+    job: '/usr/sbin/logrotate {{ folder_path }}/{{ logrotate_file_name }}.conf --state {{ folder_path }}/logrotate-state'
