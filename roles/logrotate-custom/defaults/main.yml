@@ -1,2 +1,5 @@
 ---
 # defaults file for logrotate-custom
+folder_path: '/etc/proxies'
+logrotate_file_name: 'logrotate'
+log_path: '/var/log/proxies'

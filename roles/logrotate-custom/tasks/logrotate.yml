@@ -3,3 +3,32 @@
   package:
     name: logrotate
     state: present
+
+- name: Creates Independent Folder
+  file:
+    path: '{{ folder_path }}'
+    state: directory
+- name: Creating Independent Logrotate Setup
+  diff: no
+  copy:
+    dest: '/{{ folder_path }}/{{ logrotate_file_name }}.conf'
+    content: |
+      '{{ log_path }}/*.log'
+      {
+        daily
+        copytruncate
+        size 200M
+        maxsize 300M
+        missingok
+        rotate 1
+        compress
+        delaycompress
+        notifempty
+        create 0640 www-data adm
+        sharedscripts
+      }
+- name: Creating Cron to Exec Logrotate Setup
+  cron:
+    name: "Execute Logrotate Setup"
+    minute: "14"
+    job: "/usr/sbin/logrotate /{{ folder_path }}/{{ logrotate_file_name }}.conf --state /{{ folder_path }}/{{ logrotate_file_name }}.conf/logrotate-state"
