@@ -11,7 +11,7 @@
 - name: Creating Independent Logrotate Setup
   diff: no
   copy:
-    dest: '/{{ folder_path }}/{{ logrotate_file_name }}.conf'
+    dest: '{{ folder_path }}/{{ logrotate_file_name }}.conf'
     content: |
       '{{ log_path }}/*.log'
       {
@@ -31,4 +31,4 @@
   cron:
     name: "Execute Logrotate Setup"
     minute: "14"
-    job: "/usr/sbin/logrotate /{{ folder_path }}/{{ logrotate_file_name }}.conf --state /{{ folder_path }}/{{ logrotate_file_name }}.conf/logrotate-state"
+    job: "/usr/sbin/logrotate {{ folder_path }}/{{ logrotate_file_name }}.conf --state {{ folder_path }}/{{ logrotate_file_name }}.conf/logrotate-state"
