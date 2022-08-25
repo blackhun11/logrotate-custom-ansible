@@ -1,0 +1,5 @@
+---
+- name: Logrotate | Install logrotate
+  package:
+    name: logrotate
+    state: present
