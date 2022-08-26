@@ -12,21 +12,7 @@
   diff: no
   copy:
     dest: '{{ folder_path }}/{{ logrotate_file_name }}.conf'
-    content: |
-      '{{ log_path }}/*.log'
-      {
-        daily
-        copytruncate
-        size 200M
-        maxsize 300M
-        missingok
-        rotate 1
-        compress
-        delaycompress
-        notifempty
-        create 0640 www-data adm
-        sharedscripts
-      }
+    content: '{{ logrotate_content }}'
 - name: Creating Cron to Exec Logrotate Setup
   cron:
     name: 'Execute Logrotate Setup'

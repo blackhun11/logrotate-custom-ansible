@@ -3,3 +3,18 @@
 folder_path: '/etc/proxies'
 logrotate_file_name: 'logrotate'
 log_path: '/var/log/proxies'
+logrotate_content: |
+      '{{ log_path }}/*.log'
+      {
+        daily
+        copytruncate
+        size 200M
+        maxsize 300M
+        missingok
+        rotate 1
+        compress
+        delaycompress
+        notifempty
+        create 0640 www-data adm
+        sharedscripts
+      }
