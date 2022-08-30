@@ -6,15 +6,15 @@
 
 - name: Creates Independent Folder
   file:
-    path: '{{ logrotate_folder_path }}'
+    path: '{{ proxies_logrotate_folder_path }}'
     state: directory
 - name: Creating Independent Logrotate Setup
   diff: no
   copy:
-    dest: '{{ logrotate_folder_path }}/{{ logrotate_file_name }}.conf'
-    content: '{{ logrotate_content }}'
+    dest: '{{ proxies_logrotate_folder_path }}/{{ proxies_logrotate_file_name }}.conf'
+    content: '{{ proxies_logrotate_content }}'
 - name: Creating Cron to Exec Logrotate Setup
   cron:
     name: 'Execute Logrotate Setup'
     minute: '14'
-    job: '/usr/sbin/logrotate {{ logrotate_folder_path }}/{{ logrotate_file_name }}.conf --state {{ logrotate_folder_path }}/logrotate-state'
+    job: '/usr/sbin/logrotate {{ proxies_logrotate_folder_path }}/{{ proxies_logrotate_file_name }}.conf --state {{ proxies_logrotate_folder_path }}/logrotate-state'

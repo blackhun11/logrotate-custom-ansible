@@ -1,10 +1,10 @@
 ---
-# defaults file for logrotate-custom
-logrotate_folder_path: '/etc/proxies'
-logrotate_file_name: 'logrotate'
-log_path: '/var/log/proxies'
-logrotate_content: |
-      '{{ log_path }}/*.log'
+# defaults file for proxies logrotate-custom
+proxies_logrotate_folder_path: '/etc/proxies'
+proxies_logrotate_file_name: 'logrotate'
+proxies_log_path: '/var/log/proxies'
+proxies_logrotate_content: |
+      '{{ proxies_log_path }}/*.log'
       {
         daily
         copytruncate
